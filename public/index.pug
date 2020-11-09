@@ -1,0 +1,34 @@
+doctype html
+html(lang="ja")
+  head
+    meta(charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0")
+    title 最寄り駅検索
+    link(rel='stylesheet', href="css/common.css")
+    link(rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css")
+  body
+    div(class="container")
+      include ./header.pug
+      div(class="wrapper")
+        form(name="select-form")
+          div(class="flex-container")
+            div(class="selectdiv flex-item")
+                label(for="geoapi-prefectures") 都道府県
+                select(id="geoapi-prefectures" name="geoapi-prefectures")
+                  option(value="") 都道府県を選択してください　
+            div(class="selectdiv flex-item")
+                label(for="geoapi-cities") 市区町村
+                select(id="geoapi-cities" name="geoapi-cities")
+                  option(value="") 市区町村名を選択してください　
+            //- div(class="selectdiv flex-item")
+            //-     label(for="geoapi-towns") 町域
+            //-     select(id="geoapi-towns" name="geoapi-towns")
+            //-       option(value="") 町域を選択してください　
+        div(class="btn-area")
+          button(id="search-btn" onclick='search()' class="btn btn-border") 検索
+        div(id="towns-list" name="towns-list" class="list-area list")
+          ul(id="towns-list-ul" name="towns-list-ul" class="list-box")
+
+      include ./footer.pug
+
+script
+  include ./include/list.js

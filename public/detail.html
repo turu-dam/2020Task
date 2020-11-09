@@ -1,0 +1,86 @@
+<!DOCTYPE html><html lang="ja"><head><meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"><title>最寄り駅検索</title><link rel="stylesheet" href="css/common.css"><link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"><script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"></script></head><body><div id="loader-bg"><div id="loader"><p><NOW>LOADING</NOW></p></div></div><header class="header"><h1 class="header-inner">最寄り駅検索</h1></header><script>/* スマホ用高さ */
+if (window.matchMedia && window.matchMedia('(max-device-width: 640px)').matches) {
+  var vh=window.innerHeight;
+  console.log(vh);
+  document.body.style.height=vh+'px';
+  document.getElementById('loader-bg').style.height=vh+'px';
+  // document.getElementsByClassName('wrapper')[0].style.height=(vh-120)+'px';
+  // document.getElementsByClassName('map')[0].style.height=(vh-200)+'px';
+  // document.getElementsByClassName('list-area')[0].style.height=(vh-340)+'px';
+}
+
+function heightTop(){
+  if (window.matchMedia && window.matchMedia('(max-device-width: 640px)').matches) {
+    var vh=window.innerHeight;
+    console.log(vh);
+    document.getElementsByClassName('container')[0].style.minHeight=vh+'px';
+    document.getElementsByClassName('wrapper')[0].style.height=(vh-120)+'px';
+    document.getElementsByClassName('list-area')[0].style.height=(vh-340)+'px';
+  } 
+}
+
+function heightDetail(){
+  if (window.matchMedia && window.matchMedia('(max-device-width: 640px)').matches) {
+    var vh=window.innerHeight;
+    console.log(vh);
+    document.getElementsByClassName('map')[0].style.height=(vh-200)+'px';
+  } 
+}
+
+/* ロード画面を表示にする処理 */
+function startload(){
+  console.log("startload");
+  var bg = document.getElementById('loader-bg'),
+  loader = document.getElementById('loader');
+
+  bg.classList.add('show');
+  loader.classList.add('show');  
+}
+
+/* ロード画面を非表示にする処理 */
+function stopload(){
+  console.log("stopload");
+  var bg = document.getElementById('loader-bg'),
+  loader = document.getElementById('loader');
+
+  bg.classList.remove('show');
+  loader.classList.remove('show');  
+}</script><div class="breadcrumbs"><ul><li><a href="/"><i class="fas fa-home">最寄り駅検索</i></a></li><li><p>最寄り駅地図</p></li></ul></div><div class="map leaflet-center" id="map-id"></div><footer class="footer"><p>株式会社Skywill</p></footer></body></html><script>heightDetail();
+
+let query = location.search;
+const value = query.split('=');
+const postal = decodeURIComponent(value[1]);
+
+console.log(decodeURIComponent(value[1]));
+
+fetch(`//geoapi.heartrails.com/api/json?method=getStations&postal=${postal}`)
+.then(response => response.json())
+  .then(data => {
+    const stationInfo = data.response.station[0];
+    console.log(stationInfo);        
+    const x = stationInfo.x;
+    const y = stationInfo.y;
+    const stationName = stationInfo.name;
+    const stationLine = stationInfo.line;
+    console.log(x);
+    console.log(y);
+
+    //var map = L.map('map-id').setView([35.688544, 139.764692], 18);
+    const xy = [y,x];
+    console.log(xy);
+    let map = L.map('map-id').setView(xy, 18);
+
+    let osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: "© <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors"
+    });
+
+    osm.addTo(map);
+
+    //JIG-SAW本社の位置にマーカーを追加する。
+    //var marker = L.marker([35.688544,139.764692]).addTo(map);
+    let marker = L.marker(xy).addTo(map);
+    //上のマーカーにポップアップを追加する。
+    marker.bindPopup(`${stationLine}${stationName}駅`).openPopup();
+})
+
+</script>

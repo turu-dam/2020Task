@@ -1,0 +1,488 @@
+@charset "UTF-8";
+@media screen and (min-width: 640px) {
+  html, body {
+    margin: 0;
+    padding: 0px;
+    height: 100vh; }
+  header {
+    color: #1fa67a;
+    /*文字色*/
+    border: solid 3px #1fa67a;
+    /*線色*/
+    padding: 0.5em;
+    /*文字周りの余白*/
+    border-radius: 0.5em;
+    /*角丸*/
+    height: 90px;
+    text-align: center;
+    display: table;
+    width: 100%;
+    box-sizing: border-box; }
+  .header-inner {
+    display: table-cell;
+    vertical-align: middle; }
+  .container {
+    position: relative;
+    min-height: 100vh; }
+  .wrapper {
+    height: calc(100vh - 140px); }
+  .map {
+    width: 95%;
+    height: calc(100vh - 220px);
+    margin-top: 5px; }
+  .leaflet-center {
+    left: 50%;
+    transform: translate(-50%, 0%); }
+  footer {
+    text-align: center;
+    background-color: #1fa67a;
+    color: #fff;
+    position: absolute;
+    /* フッターを絶対配置に指定する設定 */
+    bottom: 0;
+    /* フッターを一番下に置くぜ！ */
+    width: 100%;
+    height: 50px;
+    /* フッターの高さ */ }
+  /* セレクトボックス */
+  .selectdiv {
+    position: relative;
+    float: left;
+    width: 400px;
+    min-width: 350px;
+    margin: 10px 10px; }
+  /* IE11 hide native button (thanks Matt!) */
+  select::-ms-expand {
+    display: none; }
+  .selectdiv:after {
+    content: '<>';
+    font: 17px "Consolas", monospace;
+    color: #333;
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
+    right: 11px;
+    top: 42px;
+    padding: 0 0 2px;
+    border-bottom: 1px solid #999;
+    position: absolute;
+    pointer-events: none; }
+  .selectdiv select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    display: block;
+    width: 100%;
+    height: 50px;
+    float: right;
+    margin: 5px 0px;
+    padding: 0px 24px;
+    font-size: 16px;
+    line-height: 1.75;
+    color: #333;
+    background-color: #ffffff;
+    background-image: none;
+    border: 1px solid #cccccc;
+    -ms-word-break: normal;
+    word-break: normal; }
+  .selectdiv select:disabled {
+    background-color: #9999; }
+  /* セレクトボックス：親要素(コンテナ) */
+  .flex-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center; }
+  /* セレクトボックス：子要素(アイテム) */
+  .flex-item {
+    min-width: 200px; }
+  /* ボタン */
+  .btn-area {
+    text-align: center; }
+  .btn,
+  a.btn,
+  button.btn {
+    font-weight: 700;
+    line-height: 1.5;
+    position: relative;
+    display: inline-block;
+    padding: 0.5rem 4rem;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+    text-align: center;
+    vertical-align: middle;
+    text-decoration: none;
+    letter-spacing: 0.1em;
+    color: #fff;
+    border-radius: 0.5rem;
+    margin: 0 0 0 10px; }
+  a.btn-border,
+  button.btn-border {
+    border: 2px solid #fff;
+    border-radius: 0;
+    background: #1fa67a; }
+  button:disabled {
+    border: 2px solid #a5a5a5;
+    color: #fff;
+    background: #a5a5a5;
+    cursor: default; }
+  /* 一覧 */
+  .list-area {
+    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 270px);
+    padding: 5px;
+    box-sizing: border-box; }
+    .list-area .list-title {
+      font-size: 20px; }
+    .list-area a.link {
+      color: #1fa67a;
+      /*文字色*/ }
+    .list-area p {
+      margin: 0 0 0.1em 0; }
+  .list-box {
+    flex: 1;
+    overflow-y: scroll; }
+  .list ul {
+    padding: 0; }
+    .list ul li {
+      color: #404040;
+      border-left: solid 6px #1fa67a;
+      /*左側の線*/
+      border-top: solid 2px #707070;
+      /*上に灰色線*/
+      border-bottom: solid 2px #707070;
+      /*下に灰色線*/
+      border-right: solid 2px #707070;
+      /*右に灰色線*/
+      background: #E8E6E6;
+      margin-bottom: 5px;
+      /*下のバーとの余白*/
+      line-height: 1.5;
+      padding: 0.5em;
+      list-style-type: none !important;
+      /*ポチ消す*/
+      font-weight: bold; }
+  .list ol li {
+    color: #404040;
+    border-left: solid 6px #1fa67a;
+    /*左側の線*/
+    border-top: solid 2px #707070;
+    /*上に灰色線*/
+    border-bottom: solid 2px #707070;
+    /*下に灰色線*/
+    background: #E8E6E6;
+    margin-bottom: 5px;
+    /*下のバーとの余白*/
+    line-height: 1.5;
+    padding: 0.5em;
+    list-style-type: none !important;
+    /*ポチ消す*/
+    font-weight: bold; }
+  /* パンくず */
+  .breadcrumbs ul {
+    display: flex;
+    list-style-type: none;
+    justify-content: center;
+    padding: 0; }
+  .breadcrumbs li {
+    height: 30px;
+    font-weight: bold;
+    color: #1fa67a;
+    font-size: 16px; }
+    .breadcrumbs li p {
+      margin-top: 0;
+      margin-bottom: 0; }
+    .breadcrumbs li a {
+      color: #1fa67a;
+      padding: 5px; }
+    .breadcrumbs li i {
+      text-decoration: underline; }
+  .breadcrumbs li:after {
+    content: '/';
+    margin-left: 10px;
+    margin-right: 10px;
+    color: #1fa67a; }
+  .breadcrumbs li:last-child:after {
+    content: "";
+    /* 最後のliの後ろには区切り文字を表示しない */ }
+  /* ローディング画面 */
+  #loader-bg {
+    background: #ffffff;
+    height: 100%;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+    opacity: 0;
+    -webkit-transition: .5s;
+    -o-transition: .5s;
+    transition: .5s;
+    display: none; }
+  #loader-bg.show {
+    display: block;
+    opacity: 0.7; }
+  #loader {
+    height: 120px;
+    left: 50%;
+    margin-left: -60px;
+    margin-top: -60px;
+    position: fixed;
+    top: 50%;
+    width: 120px; }
+  #loader p {
+    color: #454545;
+    font-size: 10px;
+    line-height: 1.4;
+    text-align: center; }
+  #loader p img {
+    display: inline-block; } }
+
+@media screen and (max-width: 640px) {
+  html, body {
+    margin: 0;
+    padding: 0px; }
+  header {
+    color: #1fa67a;
+    /*文字色*/
+    border: solid 3px #1fa67a;
+    /*線色*/
+    padding: 0.5em;
+    /*文字周りの余白*/
+    border-radius: 0.5em;
+    /*角丸*/
+    height: 50px;
+    text-align: center;
+    display: table;
+    width: 100%;
+    box-sizing: border-box; }
+  .header-inner {
+    display: table-cell;
+    vertical-align: middle; }
+  .container {
+    position: relative; }
+  .map {
+    width: 95%;
+    margin-top: 5px; }
+  .leaflet-center {
+    left: 50%;
+    transform: translate(-50%, 0%); }
+  footer {
+    text-align: center;
+    background-color: #1fa67a;
+    color: #fff;
+    position: absolute;
+    /* フッターを絶対配置に指定する設定 */
+    bottom: 0;
+    /* フッターを一番下に置くぜ！ */
+    width: 100%;
+    height: 50px;
+    /* フッターの高さ */ }
+  /* セレクトボックス */
+  .selectdiv {
+    position: relative;
+    width: 400px;
+    min-width: 350px;
+    margin: 5px 5px; }
+  /* IE11 hide native button (thanks Matt!) */
+  select::-ms-expand {
+    display: none; }
+  .selectdiv:after {
+    content: '<>';
+    font: 17px "Consolas", monospace;
+    color: #333;
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
+    right: 11px;
+    top: 42px;
+    padding: 0 0 2px;
+    border-bottom: 1px solid #999;
+    position: absolute;
+    pointer-events: none; }
+  .selectdiv select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    display: block;
+    width: 100%;
+    height: 50px;
+    float: right;
+    margin: 5px 0px;
+    padding: 0px 24px;
+    font-size: 16px;
+    line-height: 1.75;
+    color: #333;
+    background-color: #ffffff;
+    background-image: none;
+    border: 1px solid #cccccc;
+    -ms-word-break: normal;
+    word-break: normal; }
+  .selectdiv select:disabled {
+    background-color: #9999; }
+  /* セレクトボックス：親要素(コンテナ) */
+  .flex-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center; }
+  /* セレクトボックス：子要素(アイテム) */
+  .flex-item {
+    min-width: 200px; }
+  /* ボタン */
+  .btn-area {
+    text-align: center; }
+  .btn,
+  a.btn,
+  button.btn {
+    font-weight: 700;
+    line-height: 1.5;
+    position: relative;
+    display: inline-block;
+    padding: 0.5rem 4rem;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+    text-align: center;
+    vertical-align: middle;
+    text-decoration: none;
+    letter-spacing: 0.1em;
+    color: #fff;
+    border-radius: 0.5rem;
+    margin-top: 5px;
+    margin-left: auto;
+    margin-right: auto; }
+  a.btn-border,
+  button.btn-border {
+    border: 2px solid #fff;
+    border-radius: 0;
+    background: #1fa67a; }
+  button:disabled {
+    border: 2px solid #a5a5a5;
+    color: #fff;
+    background: #a5a5a5;
+    cursor: default; }
+  /* 一覧 */
+  .list-area {
+    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    box-sizing: border-box; }
+    .list-area .list-title {
+      font-size: 20px; }
+    .list-area a.link {
+      color: #1fa67a;
+      /*文字色*/ }
+    .list-area p {
+      margin: 0 0 0.1em 0; }
+  .list-box {
+    flex: 1;
+    overflow-y: scroll; }
+  .list ul {
+    padding: 0; }
+    .list ul li {
+      color: #404040;
+      border-left: solid 6px #1fa67a;
+      /*左側の線*/
+      border-top: solid 2px #707070;
+      /*上に灰色線*/
+      border-bottom: solid 2px #707070;
+      /*下に灰色線*/
+      border-right: solid 2px #707070;
+      /*右に灰色線*/
+      background: #E8E6E6;
+      margin-bottom: 5px;
+      /*下のバーとの余白*/
+      line-height: 1.5;
+      padding: 0.5em;
+      list-style-type: none !important;
+      /*ポチ消す*/
+      font-weight: bold; }
+  .list ol li {
+    color: #404040;
+    border-left: solid 6px #1fa67a;
+    /*左側の線*/
+    border-top: solid 2px #707070;
+    /*上に灰色線*/
+    border-bottom: solid 2px #707070;
+    /*下に灰色線*/
+    background: #E8E6E6;
+    margin-bottom: 5px;
+    /*下のバーとの余白*/
+    line-height: 1.5;
+    padding: 0.5em;
+    list-style-type: none !important;
+    /*ポチ消す*/
+    font-weight: bold; }
+  /* パンくず */
+  .breadcrumbs ul {
+    display: flex;
+    list-style-type: none;
+    justify-content: center;
+    padding: 0; }
+  .breadcrumbs li {
+    height: 30px;
+    font-weight: bold;
+    color: #1fa67a;
+    font-size: 16px; }
+    .breadcrumbs li p {
+      margin-top: 0;
+      margin-bottom: 0; }
+    .breadcrumbs li a {
+      color: #1fa67a;
+      padding: 5px; }
+    .breadcrumbs li i {
+      text-decoration: underline; }
+  .breadcrumbs li:after {
+    content: '/';
+    margin-left: 10px;
+    margin-right: 10px;
+    color: #1fa67a; }
+  .breadcrumbs li:last-child:after {
+    content: "";
+    /* 最後のliの後ろには区切り文字を表示しない */ }
+  /* ローディング画面 */
+  #loader-bg {
+    background: #ffffff;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+    opacity: 0;
+    -webkit-transition: .5s;
+    -o-transition: .5s;
+    transition: .5s;
+    display: none; }
+  #loader-bg.show {
+    display: block;
+    opacity: 0.7; }
+  #loader {
+    height: 120px;
+    left: 50%;
+    margin-left: -60px;
+    margin-top: -60px;
+    position: fixed;
+    top: 50%;
+    width: 120px; }
+  #loader p {
+    color: #454545;
+    font-size: 10px;
+    line-height: 1.4;
+    text-align: center; }
+  #loader p img {
+    display: inline-block; } }

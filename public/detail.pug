@@ -1,0 +1,24 @@
+doctype html
+html(lang="ja")
+  head
+    meta(charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0")
+    title 最寄り駅検索
+    link(rel="stylesheet" href="css/common.css")
+    link(rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css")
+    link(rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css")
+    script(src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js")
+  body
+    include ./header.pug
+    div(class="breadcrumbs")
+      ul
+        li
+          a(href="/")
+            i(class="fas fa-home") 最寄り駅検索
+        li
+          p 最寄り駅地図
+    div(id="map-id" class="map leaflet-center")
+
+    include ./footer.pug
+
+script
+  include ./include/detail.js
